@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kommonitor-processing-engine
+  labels:
+    app: kommonitor-processing-engine
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kommonitor-processing-engine
+  template:
+    metadata:
+      labels:
+        app: kommonitor-processing-engine
+    spec:
+      containers:
+      - name: kommonitor-processing-engine
+        image: kommonitor/processing-engine
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "16M"
+            cpu: "1m"
+          limits:
+            memory: "1024M"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8086
+        env:
+        - name: KEYCLOAK_ADMIN_RIGHTS_USER_NAME
+          valueFrom:
+            secretKeyRef:
+              name: kommonitor-processing-engine
+              key: admin.username
+        - name: KEYCLOAK_ADMIN_RIGHTS_USER_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: kommonitor-processing-engine
+              key: admin.password
+        - name: KEYCLOAK_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: kommonitor-processing-engine
+              key: keycloak.secret
+        envFrom:
+        - configMapRef:
+            name: kommonitor-processing-engine
+        - configMapRef:
+            name: kommonitor-keycloak
+        volumeMounts:
+        - name: kommonitor-processing-engine-storage
+          mountPath: /code/tmp
+      volumes:
+      - name: kommonitor-processing-engine-storage
+        persistentVolumeClaim:
+          claimName: kommonitor-processing-engine-storage

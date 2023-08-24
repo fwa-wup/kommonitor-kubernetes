@@ -1,0 +1,39 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kommonitor-processing-engine
+data:
+  ###### ###############
+  #      General      #
+  #####################
+  # use kubernetes service name if possible; else IP 
+  REDIS_HOST: redis
+  # running redis port
+  REDIS_PORT: "6379"     
+
+  # paramter to query geometries from Data Management component 
+  GEOMETRY_SIMPLIFICATION_PARAMETER_NAME: simplifyGeometries
+  # values are ["original", "weak", "medium", "strong"] from weak to strong the geometries
+  # are more simplified (reducing size)
+  GEOMETRY_SIMPLIFICATION_PARAMETER_VALUE: original
+  # KomMonitor wide setting, which property contains feature ID values - best not be changed
+  FEATURE_ID_PROPERTY_NAME: ID
+  # KomMonitor wide setting, which property contains feature NAME values - best not be changed
+  FEATURE_NAME_PROPERTY_NAME: NAME
+  # URL to Open Route Service instance (not limited to ORS version 5)
+  OPEN_ROUTE_SERVICE_URL: https://ors5.fbg-hsbo.de
+  # optionally disable any console log
+  DISABLE_LOGS: "false"
+  # setting to split up computed indicator results import/update requests; each request has the
+  # specified maximum number of indicator timestamps 
+  MAX_NUMBER_OF_TARGET_DATES_PER_PUT_REQUEST: "45"
+  # URL to Data Management service; use docker name and port if possible
+  KOMMONITOR_DATA_MANAGEMENT_URL: http://kommonitor-data-management:8085/management
+
+  #####################
+  #     Keycloak      #
+  #####################
+  # Keycloak client/resource name
+  KEYCLOAK_RESOURCE: kommonitor-processing-engine
+  # name of kommonitor admin role within keycloak - default is 'kommonitor-creator'
+  KOMMONITOR_ADMIN_ROLENAME: kommonitor-creator

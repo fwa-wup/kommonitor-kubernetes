@@ -1,0 +1,40 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kommonitor-importer
+  labels:
+    app: kommonitor-importer
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kommonitor-importer
+  template:
+    metadata:
+      labels:
+        app: kommonitor-importer
+    spec:
+      containers:
+      - name: kommonitor-importer
+        image: kommonitor/importer
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "16M"
+            cpu: "1m"
+          limits:
+            memory: "1024M"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8087
+        env:
+        - name: KEYCLOAK_CREDENTIALS_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: kommonitor-importer
+              key: keycloak.secret
+        envFrom:
+        - configMapRef:
+            name: kommonitor-importer
+        - configMapRef:
+            name: kommonitor-keycloak

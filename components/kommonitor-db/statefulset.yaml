@@ -1,0 +1,59 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: kommonitor-db
+spec:
+  serviceName: kommonitor-db
+  selector:
+    matchLabels:
+      app: kommonitor-db
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: kommonitor-db
+    spec:
+      containers:
+      - name: kommonitor-db
+        image: postgis/postgis:15-master
+        imagePullPolicy: "Always"
+        resources:
+          requests:
+            memory: "16Mi"
+            cpu: "1m"
+          limits:
+            memory: "512Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 5432
+        env:
+          - name: ALLOW_IP_RANGE
+            value: 0.0.0.0/0
+          - name: POSTGRES_USER
+            valueFrom:
+              secretKeyRef:
+                name: kommonitor-db
+                key: kommonitor.db.user
+          - name: POSTGRES_PASSWORD
+            valueFrom:
+              secretKeyRef:
+                name: kommonitor-db
+                key: kommonitor.db.password
+          - name: POSTGRES_DB
+            value: kommonitor-data
+          - name: PGDATA
+            value: /var/lib/postgresql/data/pgdata
+        volumeMounts:
+        - name: kommonitor-db-data
+          mountPath: /var/lib/postgresql/data
+  volumeClaimTemplates:
+  - metadata:
+      name: kommonitor-db-data
+    spec:
+      storageClassName: retained-ssd
+      resources:
+        requests:
+          storage: 10Gi
+      volumeMode: Filesystem
+      accessModes:
+      - "ReadWriteOnce"

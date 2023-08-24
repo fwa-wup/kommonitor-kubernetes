@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: kommonitor-db
+  labels:
+    app: kommonitor-db
+spec:
+  ports:
+  - name: tcp
+    port: 5432
+    targetPort: 5432
+  clusterIP: None
+  selector:
+    app: kommonitor-db

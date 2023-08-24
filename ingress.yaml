@@ -1,0 +1,64 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/issuer: kommonitor-issuer
+    nginx.ingress.kubernetes.io/proxy-body-size: "1G"
+    nginx.ingress.kubernetes.io/rewrite-target: /$1
+    nginx.ingress.kubernetes.io/configuration-snippet: |
+      rewrite ^/keycloak$ /keycloak/ redirect;
+      rewrite ^/ui$ /ui/ redirect;
+      rewrite ^/$ /ui/ redirect;
+  name: kommonitor
+spec:
+  tls:
+  - hosts:
+    - demo.kommonitor.de
+    secretName: kommonitor-tls
+  rules:
+  - host: demo.kommonitor.de
+    http:
+      paths:
+      - path: /keycloak/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: keycloak
+            port:
+              number: 8080
+      - path: /data-management/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: kommonitor-data-management
+            port:
+              number: 8085
+      - path: /data-importer/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: kommonitor-importer
+            port:
+              number: 8087
+      - path: /client-config/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: kommonitor-client-config
+            port:
+              number: 8088
+      - path: /data-processing/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: kommonitor-processing-engine
+            port:
+              number: 8086
+      - path: /ui/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: kommonitor-web-client
+            port:
+              number: 80

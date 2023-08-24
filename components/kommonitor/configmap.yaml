@@ -1,0 +1,8 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kommonitor-keycloak
+data:
+  KEYCLOAK_ENABLED: "true"
+  KEYCLOAK_REALM: kommonitor-demo
+  KEYCLOAK_AUTH_SERVER_URL: https://demo.kommonitor.de/keycloak/

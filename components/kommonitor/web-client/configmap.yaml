@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kommonitor-web-client
+data:
+  config-storage-server.json: |
+    {
+      "targetUrlToConfigStorageServer_appConfig" : "https://demo.kommonitor.de/client-config/config/client-app-config", 
+      "targetUrlToConfigStorageServer_keycloakConfig" : "https://demo.kommonitor.de/client-config/config/client-keycloak-config",
+      "targetUrlToConfigStorageServer_controlsConfig" : "https://demo.kommonitor.de/client-config/config/client-controls-config"
+    }

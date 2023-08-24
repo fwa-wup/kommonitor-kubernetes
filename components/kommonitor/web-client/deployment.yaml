@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kommonitor-web-client
+  labels:
+    app: kommonitor-web-client
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kommonitor-web-client
+  template:
+    metadata:
+      labels:
+        app: kommonitor-web-client
+    spec:
+      containers:
+      - name: kommonitor-web-client
+        image: kommonitor/web-client
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "16M"
+            cpu: "1m"
+          limits:
+            memory: "1024M"
+            cpu: "1000m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: kommonitor-client-storage
+          mountPath: /usr/share/nginx/html/config/config-storage-server.json
+          subPath: config-storage-server.json
+      volumes:
+      - name: kommonitor-client-storage
+        configMap:
+          name: kommonitor-web-client

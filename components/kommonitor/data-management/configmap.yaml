@@ -1,0 +1,55 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kommonitor-data-management
+data:
+  #####################
+  #      General      #
+  #####################
+  SERVER_MAX_HTTP_HEADER_SIZE: "48000"
+  # adjust logging level [e.g. "INFO", "WARN", "ERROR"] - ERROR logs only errors 
+  LOGGING_LEVEL_DE_HSBO_KOMMONITOR: INFO
+
+  #####################
+  #      Database     #
+  #####################
+  # host of database (i.e. Kubernetes service name when db runs in docker in same network;
+  # else URL to database server)
+  DATABASE_HOST: kommonitor-db
+  # database name
+  DATABASE_NAME: kommonitor-data
+  # database port
+  DATABASE_PORT: "5432"
+
+  #####################
+  #     Keycloak      #
+  #####################
+  # client/resource id of data management component in Keycloak realm
+  KEYCLOAK_RESOURCE: kommonitor-data-management
+  # sets authentication workflow to use/accept Bearer token sent within Authorization header
+  KEYCLOAK_BEARER_ONLY: "true"
+  # normally do not change this value        
+  KEYCLOAK_AUTODETECT_BEARER_ONLY: "false"
+  # Keycloak SSL setting; ["external", "none"]; default "external"
+  KEYCLOAK_SSLREQUIRED: external
+  # Keycloak setting that component is not public (its REST endpoints are partially
+  # Keycloak-protected and require Authentication)
+  KEYCLOAK_PUBLIC_CLIENT: "false"
+  # enable CORS
+  KEYCLOAK_CORS: "true"
+  # enable all HTTP operations for CORS
+  KEYCLOAK_CORS_ALLOWED_METHODS: "*"
+  # depending on DNS Routing and Reverse Proxy setup a base path can be set here to access swagger-ui interface
+  # (e.g. set '/data-management' if https://kommonitor-url.de/data-management works as entry point for localhost:8085)   
+  KOMMONITOR_SWAGGERUI_BASEPATH: data-management
+  # client/resource id of data management component in Keycloak realm
+  KOMMONITOR_SWAGGER_UI_SECURITY_CLIENT_ID: kommonitor-data-management
+  # Keycloak URL
+  SWAGGER_KEYCLOAK_AUTH_SERVER_URL: https://demo.kommonitor.de/keycloak/
+
+  # name of the Keycloak role that is used as "administrator" role within KomMonitor granting rights to inspect
+  # all data and perform all actions. This name of this role is configurable, but must be set to the equal value
+  # within management and importer component as well as within Keycloak 
+  KOMMONITOR_ROLES_ADMIN: kommonitor-creator
+  # if true, will run a recreation of all database indicator views on startup (default false)
+  KOMMONITOR_RECREATEALLVIEWSONSTARTUP: "false"

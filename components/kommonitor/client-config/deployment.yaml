@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kommonitor-client-config
+  labels:
+    app: kommonitor-client-config
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kommonitor-client-config
+  template:
+    metadata:
+      labels:
+        app: kommonitor-client-config
+    spec:
+      containers:
+      - name: kommonitor-client-config
+        image: kommonitor/client-config
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "16M"
+            cpu: "1m"
+          limits:
+            memory: "1024M"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8088
+        env:
+        - name: KEYCLOAK_CLIENT_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: kommonitor-client-config
+              key: keycloak.secret
+        envFrom:
+        - configMapRef:
+            name: kommonitor-client-config
+        volumeMounts:
+        - name: kommonitor-client-config-storage
+          mountPath: /code/configStorage
+      volumes:
+      - name: kommonitor-client-config-storage
+        persistentVolumeClaim:
+          claimName: kommonitor-client-config-storage

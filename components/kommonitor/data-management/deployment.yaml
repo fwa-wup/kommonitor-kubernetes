@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kommonitor-data-management
+  labels:
+    app: kommonitor-data-management
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kommonitor-data-management
+  template:
+    metadata:
+      labels:
+        app: kommonitor-data-management
+    spec:
+      containers:
+      - name: kommonitor-data-management
+        image: kommonitor/data-management
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "16M"
+            cpu: "1m"
+          limits:
+            memory: "1024M"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8087
+        env:
+        - name: DATABASE_USER
+          valueFrom:
+            secretKeyRef:
+              name: kommonitor-db
+              key: kommonitor.db.user
+        - name: DATABASE_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: kommonitor-db
+              key: kommonitor.db.password
+        - name: KEYCLOAK_CREDENTIALS_SECRET
+          valueFrom:
+            secretKeyRef:
+              name: kommonitor-data-management
+              key: keycloak.secret
+        envFrom:
+        - configMapRef:
+            name: kommonitor-data-management
+        - configMapRef:
+            name: kommonitor-keycloak
