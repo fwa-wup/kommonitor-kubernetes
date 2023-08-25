@@ -8,6 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
     nginx.ingress.kubernetes.io/configuration-snippet: |
       rewrite ^/keycloak$ /keycloak/ redirect;
+      rewrite ^(keycloak[^.]*[^/])$ $1/ redirect;
       rewrite ^/ui$ /ui/ redirect;
       rewrite ^/$ /ui/ redirect;
   name: kommonitor
