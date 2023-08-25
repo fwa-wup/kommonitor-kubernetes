@@ -35,20 +35,20 @@ reference KomMonitor, DB and Keycloak services in the cluster.
 
 4. Apply all resources to your cluster by running `kubectl apply -k .`
 
-5. Adapt the [Client Config Server configurations files](./components/kommonitor/client-config/) to your cluster
+5. Adapt the [Client Config Server configurations files](./components/kommonitor/client-config/config) to your cluster
 deployment. These files are provided by the Client Config Server to the KomMonitor Web Client and contain
 serveral configuration parameters for the Web Client.
 
 6. Before you open the KomMonitor Web Client the first time, you have to provide the config files from the previous
 step to the Client Config server. Simply add it to the server by performing a HTTP POST request to all three 
 endpoints:
-    * https://demo.kommonitor.de/client-config/config/client-app-config 
-    * https://demo.kommonitor.de/client-config/config/client-keycloak-config
-    * https://demo.kommonitor.de/client-config/config/client-controls-config
+    * https://your.kommonitor.url/client-config/config/client-app-config 
+    * https://your.kommonitor.url/client-config/config/client-keycloak-config
+    * https://your.kommonitor.url/client-config/config/client-controls-config
 
     Below you'll find an example request for the client-keycloak-config endpoint:
     ```
-    curl --location 'https://demo.kommonitor.de/client-config/config/client-keycloak-config' \
+    curl --location 'https://your.kommonitor.url/client-config/config/client-keycloak-config' \
     --header 'Authorization: Bearer 
     YOUR KECLOAK ACCESS TOKEN' \
     --form 'appConfig=@"./components/kommonitor/client-config/config/webClientKeycloakConfig.json"'
