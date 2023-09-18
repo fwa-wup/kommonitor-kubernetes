@@ -10,18 +10,30 @@ data:
   # to have X-coordinate as right value and Y-cooridnate as up value
   JAVA_OPTS: -Dorg.geotools.referencing.forceXY=true
   # connection entry point for internal communication with data management component
-  KOMMONITOR_IMPORTER_DATAMANAGEMENTAPIURL: http://kommonitor-data-management:8085/management
+  KOMMONITOR_IMPORTER_DATAMANAGEMENTAPIURL: http://kommonitor-data-management:8085
   # connection entry point for internal communication with geocoder component
   # (you may usethe instance deployed at HSBO as it is configured here)
   KOMMONITOR_IMPORTER_GEOCODER_API_URL: https://geocoder.fbg-hsbo.de/geocoder
 
   #####################
-  #     Keycloak      #
+  # Spring Security   #
   #####################
-  # depending on DNS Routing and Reverse Proxy setup a base path can be set here to access swagger-ui interface
-  # (e.g. set '/importer' if https://kommonitor-url.de/importer works as entry point for localhost:8087)
-  KOMMONITOR_SWAGGERUI_BASEPATH: data-importer
-  # client/resource id of data management component in Keycloak realm
-  KOMMONITOR_SWAGGER_UI_SECURITY_CLIENT_ID: kommonitor-importer
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUERURI: https://demo.kommonitor.de/keycloak/realms/kommonitor-demo
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWKSETURI: https://demo.kommonitor.de/keycloak/realms/kommonitor-demo/protocol/openid-connect/certs
+
+  #####################
+  #     Keycloak      #
   # client/resource id of data management component in Keycloak realm
   KEYCLOAK_RESOURCE: kommonitor-importer
+
+    #####################
+  #    Swagger-UI     #
+  #####################
+  KOMMONITOR_SWAGGERUI_SERVER: https://demo.kommonitor.de/data-importer
+
+  SPRINGDOC_SWAGGERUI_CONFIGURL: /data-importer/v3/api-docs/swagger-config
+  SPRINGDOC_SWAGGERUI_URL: /data-importer/v3/api-docs
+  SPRINGDOC_SWAGGERUI_PATH: /api-docs
+  SPRINGDOC_SWAGGERUI_OAUTH2REDIRECTURL: https://demo.kommonitor.de/data-importer/swagger-ui/oauth2-redirect.html
+  SPRINGDOC_SWAGGERUI_OAUTH_CLIENTID: kommonitor-importer
+  SPRINGDOC_SWAGGERUI_OAUTH_CLIENTSECRET: importer-secret

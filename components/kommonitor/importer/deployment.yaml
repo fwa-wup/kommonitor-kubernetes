@@ -27,12 +27,6 @@ spec:
             cpu: "1000m"
         ports:
         - containerPort: 8087
-        env:
-        - name: KEYCLOAK_CREDENTIALS_SECRET
-          valueFrom:
-            secretKeyRef:
-              name: kommonitor-importer
-              key: keycloak.secret
         envFrom:
         - configMapRef:
             name: kommonitor-importer
