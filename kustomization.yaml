@@ -17,7 +17,7 @@ images:
   newTag: 3.0.0
 - name: kommonitor/importer
   newName: kommonitor/importer
-  newTag: 3.0.0
+  newTag: 3.1.0
 - name: kommonitor/client-config
   newName: kommonitor/client-config
   newTag: 2.0.3
