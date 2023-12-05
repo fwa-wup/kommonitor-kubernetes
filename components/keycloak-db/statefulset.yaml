@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: keycloak-db
-        image: postgres:latest
+        image: postgres:15-master
         imagePullPolicy: "Always"
         resources:
           requests:
