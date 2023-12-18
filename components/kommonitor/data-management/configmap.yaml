@@ -22,30 +22,28 @@ data:
   DATABASE_PORT: "5432"
 
   #####################
+  # Spring Security   #
+  #####################
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUERURI: https://demo.kommonitor.de/keycloak/realms/kommonitor-demo
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWKSETURI: https://demo.kommonitor.de/keycloak/realms/kommonitor-demo/protocol/openid-connect/certs
+
+  #####################
   #     Keycloak      #
   #####################
   # client/resource id of data management component in Keycloak realm
   KEYCLOAK_RESOURCE: kommonitor-data-management
-  # sets authentication workflow to use/accept Bearer token sent within Authorization header
-  KEYCLOAK_BEARER_ONLY: "true"
-  # normally do not change this value        
-  KEYCLOAK_AUTODETECT_BEARER_ONLY: "false"
-  # Keycloak SSL setting; ["external", "none"]; default "external"
-  KEYCLOAK_SSLREQUIRED: external
-  # Keycloak setting that component is not public (its REST endpoints are partially
-  # Keycloak-protected and require Authentication)
-  KEYCLOAK_PUBLIC_CLIENT: "false"
-  # enable CORS
-  KEYCLOAK_CORS: "true"
-  # enable all HTTP operations for CORS
-  KEYCLOAK_CORS_ALLOWED_METHODS: "*"
-  # depending on DNS Routing and Reverse Proxy setup a base path can be set here to access swagger-ui interface
-  # (e.g. set '/data-management' if https://kommonitor-url.de/data-management works as entry point for localhost:8085)   
-  KOMMONITOR_SWAGGERUI_BASEPATH: data-management
-  # client/resource id of data management component in Keycloak realm
-  KOMMONITOR_SWAGGER_UI_SECURITY_CLIENT_ID: kommonitor-data-management
-  # Keycloak URL
-  SWAGGER_KEYCLOAK_AUTH_SERVER_URL: https://demo.kommonitor.de/keycloak/
+
+  #####################
+  #    Swagger-UI     #
+  #####################
+  KOMMONITOR_SWAGGERUI_SERVER: https://demo.kommonitor.de/data-management
+
+  SPRINGDOC_SWAGGERUI_CONFIGURL: /data-management/v3/api-docs/swagger-config
+  SPRINGDOC_SWAGGERUI_URL: /data-management/v3/api-docs
+  SPRINGDOC_SWAGGERUI_PATH: /api-docs
+  SPRINGDOC_SWAGGERUI_OAUTH2REDIRECTURL: https://demo.kommonitor.de/data-management/swagger-ui/oauth2-redirect.html
+  SPRINGDOC_SWAGGERUI_OAUTH_CLIENTID: kommonitor-data-management
+  SPRINGDOC_SWAGGERUI_OAUTH_CLIENTSECRET: data-management-secret
 
   # name of the Keycloak role that is used as "administrator" role within KomMonitor granting rights to inspect
   # all data and perform all actions. This name of this role is configurable, but must be set to the equal value
