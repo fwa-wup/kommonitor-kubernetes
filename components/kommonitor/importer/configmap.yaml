@@ -10,7 +10,7 @@ data:
   # to have X-coordinate as right value and Y-cooridnate as up value
   JAVA_OPTS: -Dorg.geotools.referencing.forceXY=true
   # connection entry point for internal communication with data management component
-  KOMMONITOR_IMPORTER_DATAMANAGEMENTAPIURL: http://kommonitor-data-management:8085
+  KOMMONITOR_IMPORTER_DATAMANAGEMENTAPIURL: http://kommonitor-data-management:8085/management
   # connection entry point for internal communication with geocoder component
   # (you may usethe instance deployed at HSBO as it is configured here)
   KOMMONITOR_IMPORTER_GEOCODER_API_URL: https://geocoder.fbg-hsbo.de/geocoder

@@ -14,10 +14,10 @@ resources:
 images:
 - name: kommonitor/data-management
   newName: kommonitor/data-management
-  newTag: 3.1.0-beta.1
+  newTag: 3.1.0
 - name: kommonitor/importer
   newName: kommonitor/importer
-  newTag: 3.2.2
+  newTag: 3.2.3
 - name: kommonitor/client-config
   newName: kommonitor/client-config
   newTag: 2.0.3
@@ -29,4 +29,4 @@ images:
   newTag: 2.0.2
 - name: kommonitor/web-client
   newName: kommonitor/web-client
-  newTag: 2.2.0
+  newTag: 2.2.1
