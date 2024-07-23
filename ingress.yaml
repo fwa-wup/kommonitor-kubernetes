@@ -57,6 +57,13 @@ spec:
             name: kommonitor-processing-engine
             port:
               number: 8086
+      - path: /processor/(.*)
+        pathType: Prefix
+        backend:
+          service:
+            name: kommonitor-spatial-data-processor
+            port:
+              number: 8090
       - path: /ui/(.*)
         pathType: Prefix
         backend:

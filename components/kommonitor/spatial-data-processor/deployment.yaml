@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kommonitor-spatial-data-processor
+  labels:
+    app: kommonitor-spatial-data-processor
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kommonitor-spatial-data-processor
+  template:
+    metadata:
+      labels:
+        app: kommonitor-spatial-data-processor
+    spec:
+      containers:
+      - name: kommonitor-spatial-data-processor
+        image: kommonitor/spatial-data-processor
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "16M"
+            cpu: "1m"
+          limits:
+            memory: "2048M"
+            cpu: "1000m"
+        ports:
+        - containerPort: 8090
+        envFrom:
+        - configMapRef:
+            name: kommonitor-spatial-data-processor
+        - configMapRef:
+            name: kommonitor-keycloak
+        volumeMounts:
+        - name: kommonitor-spatial-data-processor-storage
+          mountPath: /opt/kommonitor/data
+      volumes:
+      - name: kommonitor-spatial-data-processor-storage
+        persistentVolumeClaim:
+          claimName: kommonitor-spatial-data-processor-storage

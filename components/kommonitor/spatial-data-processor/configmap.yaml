@@ -1,0 +1,28 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: kommonitor-spatial-data-processor
+data:
+  #####################
+  #      General      #
+  #####################
+  CONFIG_DATA_MANAGEMENT_BASEURL: http://kommonitor-data-management:8085/management/
+  CONFIG_JOBSTORE_HOLDINGTIME: "10"
+  KOMMONITOR_PROCESSOR_SECURITY_ENABLED: "true"
+  KOMMONITOR_PROCESSOR_SIMPLIFY_SPATIAL_UNIT_GEOMETRIES: medium
+  KOMMONITOR_PROCESSOR_RESIDENTIALAREADATA_TYPE: esri_shapefile
+  KOMMONITOR_PROCESSOR_RESIDENTIALAREADATA_SHAPE_FILEPATH: /opt/kommonitor/data/basis-dlm/sie02_f.shp
+  KOMMONITOR_PROCESSOR_RESIDENTIALAREADATA_SHAPE_FIELDNAME: OBJART
+  KOMMONITOR_PROCESSOR_RESIDENTIALAREADATA_SHAPE_FIELDVALUES: "41001"
+
+  #####################
+  # Spring Security   #
+  #####################
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_ISSUERURI: https://demo.kommonitor.de/keycloak/realms/kommonitor-demo
+  SPRING_SECURITY_OAUTH2_RESOURCESERVER_JWT_JWKSETURI: https://demo.kommonitor.de/keycloak/realms/kommonitor-demo/protocol/openid-connect/certs
+
+  #####################
+  #    Swagger-UI     #
+  #####################
+  SPRINGDOC_APIDOCS_ENABLED: "false"
+  SPRINGDOC_SWAGGERUI_URL: /processor/specs/spatial-data-processor/kommonitor_spatialDataProcessorAPI.yaml

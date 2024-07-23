@@ -42,6 +42,10 @@ try {
   // possible values for geoservice georesources: ["wfs", "wms"]
   window.__env.enabledGeoresourcesGeoservices = ["wfs", "wms"];
 
+    // show bar chart label and average line
+    window.__env.showBarChartLabel = false;
+    window.__env.showBarChartAverageLine = true;
+
   /*
   PROPERTIES used within greetings window (infoModal component)
   to insert custom LOGO by URL with custom width
@@ -109,6 +113,10 @@ try {
 
   // KomMonitor Geocoder Proxy
   window.__env.targetUrlToGeocoderService = 'https://geocoder.fbg-hsbo.de/nominatim/';
+
+  // KomMonitor Spatial Data Processor
+  window.__env.targetUrlToSpatialDataProcessorInstance = 'https://localhost/kommonitor/api/processor/';
+  window.__env.spatialDataProcessor_processName_indicatorReachabilityStatistics = "isochrone-prune";
 
   // optional geometry simplification (a feature of Data Management API)
   window.__env.simplifyGeometriesParameterName = "simplifyGeometries";
@@ -240,6 +248,7 @@ try {
   // classification
   //allowesValues: equal_interval, quantile, jenks
   window.__env.defaultClassifyMethod = "equal_interval";
+  window.__env.disableManualClassification = false;
 
   // array of indicator name substring that shal be used to filter out / hide certain indicators by their name
   // e.g. set ["entwicklung"] to hide all indicators whose name contains the substring "entwicklung"
