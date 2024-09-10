@@ -40,8 +40,11 @@ deployment. These files are provided by the Client Config Server to the KomMonit
 serveral configuration parameters for the Web Client.
 
 6. Before you open the KomMonitor Web Client the first time, you have to provide the config files from the previous
-step to the Client Config server. Simply add it to the server by performing a HTTP POST request to all three 
-endpoints:
+step to the Client Config server. For this purpose you have two options:
+
+    a) Copy the files to the container inside your pod into the directory `/code/configStorage` via [kubectl cp](https://kubernetes.io/docs/reference/kubectl/generated/kubectl_cp/).
+
+    b) Add the files to the server by performing a HTTP POST request to all three endpoints:
     * https://your.kommonitor.url/client-config/config/client-app-config 
     * https://your.kommonitor.url/client-config/config/client-keycloak-config
     * https://your.kommonitor.url/client-config/config/client-controls-config
@@ -55,4 +58,4 @@ endpoints:
     ```
     Get your own access token from Keycloak and add it to the request. Also adopt the `--location` and `--form` parameter. You can also use Postman for performing the request. 
 
-7. Now, the KomMonitor deployment for your Kubernetes Cluster should be ready. Have fun!
+7. Now, the KomMonitor deployment for your Kubernetes Cluster should be ready for usage. Have fun!
