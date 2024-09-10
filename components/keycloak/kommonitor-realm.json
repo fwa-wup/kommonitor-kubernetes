@@ -1341,19 +1341,19 @@
       "clientId": "kommonitor-processing-engine",
       "name": "",
       "description": "",
-      "rootUrl": "https://localhost/kommonitor/api/processingengine",
-      "adminUrl": "https://localhost/kommonitor/api/processingengine",
-      "baseUrl": "https://localhost/kommonitor/api/processingengine",
+      "rootUrl": "https://demo.kommonitor.de/kommonitor/api/processingengine",
+      "adminUrl": "https://demo.kommonitor.de/kommonitor/api/processingengine",
+      "baseUrl": "https://demo.kommonitor.de/kommonitor/api/processingengine",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "secret": "**********",
       "redirectUris": [
-        "https://localhost/kommonitor/api/processingengine/*"
+        "https://demo.kommonitor.de/kommonitor/api/processingengine/*"
       ],
       "webOrigins": [
-        "https://localhost"
+        "https://demo.kommonitor.de"
       ],
       "notBefore": 0,
       "bearerOnly": false,
@@ -1573,18 +1573,18 @@
       "clientId": "kommonitor-web-client",
       "name": "KomMonitor Web Client",
       "description": "",
-      "rootUrl": "https://localhost/kommonitor",
-      "adminUrl": "https://localhost/kommonitor",
-      "baseUrl": "https://localhost/kommonitor",
+      "rootUrl": "https://demo.kommonitor.de/kommonitor",
+      "adminUrl": "https://demo.kommonitor.de/kommonitor",
+      "baseUrl": "https://demo.kommonitor.de/kommonitor",
       "surrogateAuthRequired": false,
       "enabled": true,
       "alwaysDisplayInConsole": false,
       "clientAuthenticatorType": "client-secret",
       "redirectUris": [
-        "https://localhost/kommonitor/*"
+        "https://demo.kommonitor.de/kommonitor/*"
       ],
       "webOrigins": [
-        "https://localhost"
+        "https://demo.kommonitor.de"
       ],
       "notBefore": 0,
       "bearerOnly": false,
