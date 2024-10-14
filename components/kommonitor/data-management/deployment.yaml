@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: kommonitor-data-management
-        image: kommonitor/data-management
+        image: kommonitor/data-management:4.0.1
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "16M"
-            cpu: "1m"
+            memory: "300M"
+            cpu: "10m"
           limits:
             memory: "1024M"
             cpu: "1000m"

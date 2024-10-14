@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: kommonitor-importer
-        image: kommonitor/importer
+        image: kommonitor/importer:3.2.4
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "16M"
-            cpu: "1m"
+            memory: "192M"
+            cpu: "10m"
           limits:
             memory: "1024M"
             cpu: "1000m"

@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: kommonitor-spatial-data-processor
-        image: kommonitor/spatial-data-processor
+        image: kommonitor/spatial-data-processor:1.0.4
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "16M"
-            cpu: "1m"
+            memory: "128M"
+            cpu: "10m"
           limits:
             memory: "2048M"
             cpu: "1000m"
