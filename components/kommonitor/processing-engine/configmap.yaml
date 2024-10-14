@@ -3,7 +3,7 @@ kind: ConfigMap
 metadata:
   name: kommonitor-processing-engine
 data:
-  ###### ###############
+  #####################
   #      General      #
   #####################
   # use kubernetes service name if possible; else IP 
