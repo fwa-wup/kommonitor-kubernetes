@@ -16,12 +16,12 @@ spec:
     spec:
       containers:
       - name: kommonitor-client-config
-        image: kommonitor/client-config
+        image: kommonitor/client-config:2.0.4
         imagePullPolicy: Always
         resources:
           requests:
-            memory: "16M"
-            cpu: "1m"
+            memory: "64M"
+            cpu: "10m"
           limits:
             memory: "1024M"
             cpu: "1000m"

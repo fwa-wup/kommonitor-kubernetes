@@ -1,0 +1,39 @@
+# Use only for non-nginx ingress!
+#
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: kommonitor-nginx
+  labels:
+    app: kommonitor-nginx
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: kommonitor-nginx
+  template:
+    metadata:
+      labels:
+        app: kommonitor-nginx
+    spec:
+      containers:
+      - name: kommonitor-nginx
+        image:  nginx:1.27.1
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64M"
+            cpu: "10m"
+          limits:
+            memory: "1024M"
+            cpu: "1000m"
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: kommonitor-nginx
+          mountPath: /etc/nginx/nginx.conf
+          subPath: nginx.conf
+      volumes:
+      - name: kommonitor-nginx
+        configMap:
+          name: kommonitor-nginx
