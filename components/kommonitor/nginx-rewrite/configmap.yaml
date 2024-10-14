@@ -1,3 +1,5 @@
+# Use only for non-nginx ingress!
+#
 apiVersion: v1
 kind: ConfigMap
 metadata:
