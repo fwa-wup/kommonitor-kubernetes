@@ -12,7 +12,7 @@ data:
   KOMMONITOR_PROCESSING_ENGINE_URL: http://kommonitor-processing-engine:8086/processing
   # CRON pattern (refer to https://www.npmjs.com/package/node-cron) for periodic scheduler triggering
   # to initialize missing indicator time-series elements  
-  CRON_PATTERN_FOR_SCHEDULING: "* * * * *"
+  CRON_PATTERN_FOR_SCHEDULING: "*/5 * * * *"
   # default false; global setting whether the computed indictor values from the hierarchically lowest
   # spatial unit shall be aggregated to hierarchically higher spatial units (true) or if each spatial
   # unit shall be computed own their own (false - required that base data is available on the respective spatial units)
