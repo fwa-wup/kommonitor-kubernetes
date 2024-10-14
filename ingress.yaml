@@ -4,6 +4,7 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: "nginx"
     cert-manager.io/issuer: kommonitor-issuer
+    cert-manager.io/common-name: demo.kommonitor.de
     nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
     nginx.ingress.kubernetes.io/proxy-body-size: "1G"
     nginx.ingress.kubernetes.io/rewrite-target: /$1
@@ -14,6 +15,7 @@ metadata:
       rewrite ^/$ /ui/ redirect;
   name: kommonitor
 spec:
+  # ingressClassName: nginx (or similar)
   tls:
   - hosts:
     - demo.kommonitor.de
@@ -69,5 +71,36 @@ spec:
         backend:
           service:
             name: kommonitor-web-client
+            port:
+              number: 80
+---
+# For non-nginx ingress:
+#
+
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  annotations:
+    cert-manager.io/common-name: demo.kommonitor.de
+    # Use either cluster-issuer or issuer annotation
+    #
+    # cert-manager.io/cluster-issuer: default-issuer
+    cert-manager.io/issuer: kommonitor-issuer
+  name: kommonitor
+spec:
+  ingressClassName: cilium # traefik
+  tls:
+  - hosts:
+    - demo.kommonitor.de
+    secretName: kommonitor-tls
+  rules:
+  - host: demo.kommonitor.de
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: kommonitor-nginx
             port:
               number: 80
