@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kommonitor-web-client
-        image: kommonitor/web-client:3.1.4
+        image: kommonitor/web-client:3.1.5
         imagePullPolicy: Always
         resources:
           requests:
