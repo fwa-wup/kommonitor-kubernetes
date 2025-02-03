@@ -4,7 +4,7 @@ metadata:
   annotations:
     # Use either cluster-issuer or issuer annotation
     #
-    # cert-manager.io/cluster-issuer: default-issuer
+    # cert-manager.io/cluster-issuer: selfsigned-issuer
     cert-manager.io/issuer: kommonitor-issuer
     cert-manager.io/common-name: demo.kommonitor.de
     nginx.ingress.kubernetes.io/proxy-buffer-size: "8k"
@@ -86,7 +86,7 @@ metadata:
     cert-manager.io/common-name: demo.kommonitor.de
     # Use either cluster-issuer or issuer annotation
     #
-    # cert-manager.io/cluster-issuer: default-issuer
+    # cert-manager.io/cluster-issuer: selfsigned-issuer
     cert-manager.io/issuer: kommonitor-issuer
   name: kommonitor
 spec:
