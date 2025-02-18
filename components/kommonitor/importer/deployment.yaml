@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kommonitor-importer
-        image: kommonitor/importer:3.2.4
+        image: kommonitor/importer:3.2.5
         imagePullPolicy: Always
         resources:
           requests:
