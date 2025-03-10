@@ -14,7 +14,7 @@ resources:
 images:
 - name: kommonitor/data-management
   newName: kommonitor/data-management
-  newTag: 4.1.0
+  newTag: 4.1.3
 - name: kommonitor/importer
   newName: kommonitor/importer
   newTag: 3.2.5
@@ -26,10 +26,10 @@ images:
   newTag: 2.0.2
 - name: kommonitor/processing-scheduler
   newName: kommonitor/processing-scheduler
-  newTag: 2.0.2
+  newTag: 2.1.0
 - name: kommonitor/web-client
   newName: kommonitor/web-client
-  newTag: 3.3.0-beta.3
+  newTag: 3.3.0-beta.5
 - name: kommonitor/spatial-data-processor
   newName: kommonitor/spatial-data-processor
-  newTag: 1.0.4
+  newTag: 1.1.0

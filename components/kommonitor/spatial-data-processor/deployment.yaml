@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kommonitor-spatial-data-processor
-        image: kommonitor/spatial-data-processor:1.0.4
+        image: kommonitor/spatial-data-processor:1.1.0
         imagePullPolicy: Always
         resources:
           requests:
