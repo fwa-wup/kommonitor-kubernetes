@@ -29,7 +29,7 @@ images:
   newTag: 2.1.0
 - name: kommonitor/web-client
   newName: kommonitor/web-client
-  newTag: 3.3.0-beta.5
+  newTag: 3.3.0
 - name: kommonitor/spatial-data-processor
   newName: kommonitor/spatial-data-processor
   newTag: 1.1.0
