@@ -7,5 +7,11 @@ data:
     {
       "targetUrlToConfigStorageServer_appConfig" : "https://demo.kommonitor.de/client-config/config/client-app-config", 
       "targetUrlToConfigStorageServer_keycloakConfig" : "https://demo.kommonitor.de/client-config/config/client-keycloak-config",
-      "targetUrlToConfigStorageServer_controlsConfig" : "https://demo.kommonitor.de/client-config/config/client-controls-config"
+      "targetUrlToConfigStorageServer_controlsConfig" : "https://demo.kommonitor.de/client-config/config/client-controls-config",
+      "targetUrlToConfigStorageServer_filterConfig" : "https://demo.kommonitor.de/client-config/config/client-filter-config"
     }
+  kommonitor-custom.css: |
+    :root {
+      --kommonitor-primary: #337ab7;
+    }
+

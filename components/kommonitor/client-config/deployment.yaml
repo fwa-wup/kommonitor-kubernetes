@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kommonitor-client-config
-        image: kommonitor/client-config:2.0.4
+        image: kommonitor/client-config:2.1.0
         imagePullPolicy: Always
         resources:
           requests:

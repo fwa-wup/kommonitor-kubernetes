@@ -3,10 +3,9 @@ kind: ConfigMap
 metadata:
   name: keycloak
 data:
-  KC_PROXY: "edge"
-  KC_HOSTNAME: demo.kommonitor.de
-  KC_HOSTNAME_PATH: keycloak
-  KC_HOSTNAME_ADMIN_URL: https://demo.kommonitor.de/keycloak/
+  KC_PROXY_HEADERS: xforwarded
+  KC_HTTP_ENABLED: "true"
+  KC_HOSTNAME: https://demo.kommonitor.de/keycloak/
   KC_DB: postgres
   KC_DB_URL_HOST: keycloak-db
   KC_DB_URL_PORT: "5432"

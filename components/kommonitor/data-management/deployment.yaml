@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kommonitor-data-management
-        image: kommonitor/data-management:4.0.1
+        image: kommonitor/data-management:4.1.5
         imagePullPolicy: Always
         resources:
           requests:

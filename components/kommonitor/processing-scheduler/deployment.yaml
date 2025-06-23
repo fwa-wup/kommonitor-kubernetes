@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: kommonitor-processing-scheduler
-        image: kommonitor/processing-scheduler:2.0.2
+        image: kommonitor/processing-scheduler:2.1.0
         imagePullPolicy: Always
         resources:
           requests:
